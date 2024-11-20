@@ -8,8 +8,8 @@ export function CreateCounter({
 }: {
     onCreated: (id: string) => void;
 }) {
+    const counterPackageId = useNetworkVariable("counterPackageId");
     const suiClient = useSuiClient();
-    const counterPackageId = useNetworkVariable("COUNTER_PACKAGE_ID");
     const [ mutate: signAndExecute ] = useSignAndExecuteTransaction({
         execute: async ({ bytes, signature }) =>
             await suiClient.executeTransactionBlock({
@@ -31,7 +31,32 @@ export function CreateCounter({
                     create();
                 }}
             >
+                Create Counter
             </Button>
         </Container>
     );
+
+    function create() {
+        const tx = new Transaction()
+
+        tx.moveCall({
+            arguments: [],
+            target: `${counterPackageId}:counter.create`,
+        });
+
+        signAndExecute(
+            {
+                transaction: tx
+            },
+            {
+                onSuccess: (result) => {
+                    const objectId = result.effects?.created?.[0]?.reference?.objectId;
+                    if (objectId) {
+                        onCreated(objectId);
+                    }
+                },
+            }
+        );
+            
+    }
 }
