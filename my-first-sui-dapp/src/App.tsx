@@ -1,8 +1,17 @@
-import { ConnectButton } from "@mysten/dapp-kit";
+import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit";
+import { isValidSuiObjectId } from "@mysten/sui/utils";
 import { Box, Container, Flex, Heading } from "@radix-ui/themes";
-import { WalletStatus } from "./WalletStatus";
+import { useState } from "react";
+import { Counter } from "./Counter";
+import { CreateCounter } from "./CreateCounter";
 
 function App() {
+  const currentAccount = useCurrentAccount();
+  const [counterId, setCounterId] = useState({} => {
+    const hash = window.location.hash.slice(1);
+    return isValidSuiObjectId(hash) ? hash : null;
+  });
+
   return (
     <>
       <Flex
@@ -29,7 +38,20 @@ function App() {
           px="4"
           style={{ background: "var(--gray-a2)", minHeight: 500 }}
         >
-          <WalletStatus />
+          {currentAccount ? (
+              counterId ? (
+                null
+              ) : (
+                <CreateCounter
+                  onCreated={(id) => {
+                    window.location.hash = id;
+                    setCounter(id);
+                  }}
+                />
+              )
+            ) : (
+              <Heading>Connect your wallet to Start Counter!</Heading>
+            )}
         </Container>
       </Container>
     </>
