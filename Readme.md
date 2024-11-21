@@ -5,8 +5,8 @@ This dApp is a simple counter application built using the Sui blockchain. It all
 ## Project Structure
 
 The project is structured as follows:
-    - The `counter/` directory contains the Move smart contracts and related files.
-    - The `my-first-sui-dapp/` directory contains the React frontend application.
+- The `counter/` directory contains the Move smart contracts and related files.
+- The `my-first-sui-dapp/` directory contains the React frontend application.
 
 ## Key Files
 
@@ -23,7 +23,6 @@ The project is structured as follows:
 
 To install the dependencies, navigate to the `my-first-sui-dapp/` directory and run:
 
-```bash
 yarn install
 
 ## Development
