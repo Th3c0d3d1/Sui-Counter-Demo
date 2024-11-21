@@ -1,16 +1,76 @@
+// import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit";
+// import { isValidSuiObjectId } from "@mysten/sui/utils";
+// import { Box, Container, Flex, Heading } from "@radix-ui/themes";
+// import { useState } from "react";
+// import { CreateCounter } from "./CreateCounter";
+
+// function App() {
+//   const currentAccount = useCurrentAccount();
+//   const [counterId, setCounter] = useState(() => {
+//     const hash = window.location.hash.slice(1);
+//     return isValidSuiObjectId(hash) ? hash : null;
+//   });
+
+//   return (
+//     <>
+//       <Flex
+//         position="sticky"
+//         px="4"
+//         py="2"
+//         justify="between"
+//         style={{
+//           borderBottom: "1px solid var(--gray-a2)",
+//         }}
+//       >
+//         <Box>
+//           <Heading>First Sui dApp</Heading>
+//         </Box>
+
+//         <Box>
+//           <ConnectButton />
+//         </Box>
+//       </Flex>
+//       <Container>
+//         <Container
+//           mt="5"
+//           pt="2"
+//           px="4"
+//           style={{ background: "var(--gray-a2)", minHeight: 500 }}
+//         >
+//           {currentAccount ? (
+//               counterId ? (
+//                 null
+//               ) : (
+//                 <CreateCounter
+//                   onCreated={(id) => {
+//                     window.location.hash = id;
+//                     setCounter(id);
+//                   }}
+//                 />
+//               )
+//             ) : (
+//               <Heading>Connect your wallet to Start Counter!</Heading>
+//             )}
+//         </Container>
+//       </Container>
+//     </>
+//   );
+// }
+
+// export default App;
+
 import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit";
 import { isValidSuiObjectId } from "@mysten/sui/utils";
 import { Box, Container, Flex, Heading } from "@radix-ui/themes";
 import { useState } from "react";
+import { Counter } from "./Counter";
 import { CreateCounter } from "./CreateCounter";
-
 function App() {
   const currentAccount = useCurrentAccount();
   const [counterId, setCounter] = useState(() => {
     const hash = window.location.hash.slice(1);
     return isValidSuiObjectId(hash) ? hash : null;
   });
-
   return (
     <>
       <Flex
@@ -23,9 +83,8 @@ function App() {
         }}
       >
         <Box>
-          <Heading>First Sui dApp</Heading>
+          <Heading>dApp Starter Template</Heading>
         </Box>
-
         <Box>
           <ConnectButton />
         </Box>
@@ -38,23 +97,22 @@ function App() {
           style={{ background: "var(--gray-a2)", minHeight: 500 }}
         >
           {currentAccount ? (
-              counterId ? (
-                null
-              ) : (
-                <CreateCounter
-                  onCreated={(id) => {
-                    window.location.hash = id;
-                    setCounter(id);
-                  }}
-                />
-              )
+            counterId ? (
+              <Counter id={counterId} />
             ) : (
-              <Heading>Connect your wallet to Start Counter!</Heading>
-            )}
+              <CreateCounter
+                onCreated={(id) => {
+                  window.location.hash = id;
+                  setCounter(id);
+                }}
+              />
+            )
+          ) : (
+            <Heading>Please connect your wallet</Heading>
+          )}
         </Container>
       </Container>
     </>
   );
 }
-
 export default App;
