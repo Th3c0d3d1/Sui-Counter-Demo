@@ -48,9 +48,9 @@ To publish the Move smart contracts, navigate to the counter/ directory and foll
 
 ## Usage
 Once the application is running, you can:
-    - Connect your wallet using the Connect button.
-    - Create a new counter using the "Create Counter" button.
-    - Interact with an existing counter by incrementing or resetting its value.
+- Connect your wallet using the Connect button.
+- Create a new counter using the "Create Counter" button.
+- Interact with an existing counter by incrementing or resetting its value.
 
 
 ## License
