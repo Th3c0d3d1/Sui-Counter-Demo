@@ -40,12 +40,12 @@ To build the application for production, run:
 ## Publishing
 To publish the Move smart contracts, navigate to the counter/ directory and follow these steps:
 
-1. Compile the Move smart contracts:
-    - move build
+    1. Compile the Move smart contracts:
+        - move build
 
-2. Publish the compiled bytecode to the Sui network:
-    - sui client publish --path ./build/counter --gas-budget 1000
-        - Replace 1000 with an appropriate gas budget for your transaction.
+    2. Publish the compiled bytecode to the Sui network:
+        - sui client publish --path ./build/counter --gas-budget 1000
+            - Replace 1000 with an appropriate gas budget for your transaction.
 
 ## Usage
 Once the application is running, you can:
