@@ -10,16 +10,16 @@ const { networkConfig, useNetworkVariable, useNetworkVariables } =
   createNetworkConfig({
     devnet: {
       url: getFullnodeUrl("devnet"),
-      variables: {DEVNET_COUNTER_PACKAGE_ID},
+      variables: { DEVNET_COUNTER_PACKAGE_ID }
     },
     testnet: {
       url: getFullnodeUrl("testnet"),
-      variables: {TESTNET_COUNTER_PACKAGE_ID},
+      variables: { TESTNET_COUNTER_PACKAGE_ID }
     },
     mainnet: {
       url: getFullnodeUrl("mainnet"),
-      variables: {MAINNET_COUNTER_PACKAGE_ID},
-    },
+      variables: { MAINNET_COUNTER_PACKAGE_ID }
+    }
   });
 
 export { useNetworkVariable, useNetworkVariables, networkConfig };
